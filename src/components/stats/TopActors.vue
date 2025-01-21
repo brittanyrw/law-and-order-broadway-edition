@@ -1,5 +1,5 @@
 <template>
-  <div class="stat-card">
+  <div class="stat-card" id="top">
     <h2>Top 10 Law & Order Actors</h2>
     <p>Appearances across the entire Law & Order franchise.</p>
     <div v-if="loading" class="loading">

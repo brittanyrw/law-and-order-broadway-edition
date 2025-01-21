@@ -1,5 +1,5 @@
 <template>
-  <div class="multiple-actors">
+  <div class="multiple-actors" id="multi">
     <h2>Episodes with Multiple Broadway Actors</h2>
     
     <div v-if="loading" class="loading">
@@ -23,19 +23,17 @@
             :key="`${episode.show}-${episode.title}`" 
             class="episode-card"
           >
-            <h4>{{ episode.title }}</h4>
+            <h4>{{ episode.title }} <span>{{ episode.actors.length }}</span></h4>
             <div class="episode-details">
-              <p><strong>Season:</strong> {{ episode.seasonNumber }} | <strong>Episode:</strong> {{ episode.episodeNumber }}</p>
-              <p><strong>Air Date:</strong> {{ episode.airDate }}</p>
+              <p>S. {{ episode.seasonNumber }} | Ep. {{ episode.episodeNumber }} ({{ episode.airDate }})</p>
             </div>
             <div class="actors-list">
-              <h4>Broadway Actors</h4>
               <ul>
                 <li 
                   v-for="actor in episode.actors" 
                   :key="actor.name"
                 >
-                  {{ actor.name }} - {{ actor.character[0] }}
+                  {{ actor.name }} <span> as {{ actor.character[0] }} </span>
                 </li>
               </ul>
             </div>
@@ -75,10 +73,23 @@ const groupedEpisodes = computed(() => {
 
 .episodes-container {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
 }
 
 p, h4 {
   margin: 5px 0;
+}
+
+h4 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.episode-card span {
+  font-size: 16px;
+}
+
+.multiple-actors {
+  padding: 1em;
 }
 </style>

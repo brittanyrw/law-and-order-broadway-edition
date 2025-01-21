@@ -5,17 +5,25 @@
       <h2 class="header-bottom">Broadway Edition</h2>
     </header>
     <div class="hero">
+      <div class="quote">
+        <img :src="getImageUrl('quote')" alt="Quotation icon" />
+        <p>
+          In the Law & Order franchise, the people are entertained by two
+          separate yet equally important groups: the Broadway actors who bring
+          their talents to the screen and the showrunners who cast them. These
+          are their stories.
+        </p>
+      </div>
+      <hr />
       <p>
         In the Broadway theater community, Law & Order has long been known for
-        casting Broadway actors over the years. This project was created to show
+        casting many Broadway actors over the years. This project was created to show
         visually how Broadway actors have been involved in the Law & Order
         franchise, tracing data from the very first episode in 1990 to the
-        present.
+        present. 
       </p>
-      <p>
-        This project is still a work in progress. As of Jan 2025, data has been
-        entered for the years 1990 - 1992.
-      </p>
+      <p>The data is limited to the actors of opening night casts for each Broadway show that has opened since September 13, 1990 (first episode aired of Law & Order). This project is still a work in progress. As of Jan 2025, data
+        has been entered for the years 1990 - 1992.</p>
       <p class="portfolio-link">
         Created by
         <a href="https://musicalwebdev.com" target="_blank">Brittany Walker</a>.
@@ -30,13 +38,13 @@
         <ul>
           <li>Skip To:</li>
           <li><a href="#stats">Overall Statistics</a></li>
-          <li><a href="#shows">Top 10 Actors</a></li>
-          <li><a href="#shows">Timeline of Appearances</a></li>
-          <li><a href="#shows">Top Actors by Show</a></li>
-          <li><a href="#shows">Repeat Characters</a></li>
-          <li><a href="#shows">Types of Characters</a></li>
-          <li><a href="#shows">Episodes with Multiple Broadway Actors</a></li>
-          <li><a href="#shows">Other Crime Shows</a></li>
+          <li><a href="#top">Top 10 Actors</a></li>
+          <li><a href="#timeline">Timeline of Appearances</a></li>
+          <li><a href="#top-by-show">Top Actors by Show</a></li>
+          <li><a href="#repeat">Repeat Characters</a></li>
+          <li><a href="#types">Types of Characters</a></li>
+          <li><a href="#multi">Episodes with Multiple Broadway Actors</a></li>
+          <li><a href="#other-crime">Other Crime Shows</a></li>
         </ul>
       </nav>
     </div>
@@ -58,7 +66,6 @@
     <BarChart />
 
     <CrimeShowStats />
-
   </div>
 </template>
 
@@ -72,8 +79,15 @@ import RepeatCharacters from "./components/stats/RepeatCharacters.vue";
 import MultipleActors from "./components/stats/MultipleActors.vue";
 import CharacterTypeStats from "./components/stats/CharacterTypeStats.vue";
 import TimelineChart from "./components/stats/TimelineChart.vue";
-
 import BarChart from "./components/stats/BarChart.vue";
+
+const imageMap = {
+  quote: new URL("@/assets/quote-right-solid.svg", import.meta.url).href,
+};
+
+const getImageUrl = (rating) => {
+  return imageMap[rating] || "";
+};
 
 const stats = useActorStats();
 </script>
@@ -84,7 +98,8 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px auto 20px auto;
+  margin: 50px auto 0 auto;
+  padding-bottom: 0;
 }
 
 #main {
@@ -117,5 +132,48 @@ header {
 .hero {
   padding: 1em;
   border-bottom: 3px solid var(--black);
+}
+
+.quote {
+  display: flex;
+  align-items: flex-start;
+  max-width: 900px;
+  margin: auto;
+}
+
+.quote img {
+  height: 60px;
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.quote p {
+  font-style: italic;
+  font-size: 25px;
+}
+
+hr {
+  border: 3px solid var(--black);
+}
+
+nav a {
+  padding: 5px 10px;
+  background-color: var(--black);
+  color: var(--white);
+  text-decoration: none;
+  border: 3px solid var(--black);
+  margin: 10px;
+  display: inline-block;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+}
+
+nav ul li:first-child {
+  width: 100%;
 }
 </style>

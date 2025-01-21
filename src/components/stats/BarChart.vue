@@ -1,5 +1,5 @@
 <template>
-  <div class="chart-container">
+  <div class="chart-container" id="other-crime">
     <h2>Top 10 Other Crime Shows</h2>
     <div v-if="loading" class="loading">
       Loading chart data!
@@ -116,7 +116,7 @@ const chartOption = computed(() => ({
   padding: 1rem;
   background-color: var(--blue);
   border-radius: 8px;
-  margin: 1rem 0;
+  margin: 1rem;
   min-height: 500px;
   display: flex;
   flex-direction: column;

@@ -5,7 +5,7 @@ const { showSpecificStats, loading, error } = useActorStats();
 </script>
 
 <template>
-  <div class="show-specific-stats">
+  <div class="show-specific-stats" id="top-by-show">
     <h2>Top Actors by Law & Order Show</h2>
 
     <div v-if="loading" class="loading">Loading show statistics!</div>

@@ -1,5 +1,5 @@
 <template>
-    <div class="chart-container">
+    <div class="chart-container" id="timeline">
       <h2>Broadway Actors in Law & Order Shows</h2>
       <v-chart class="chart" :option="chartOption" autoresize />
     </div>

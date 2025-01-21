@@ -1,5 +1,5 @@
 <template>
-  <div class="character-type-stats">
+  <div class="character-type-stats" id="types">
     <h2>Character Types Across Law & Order Shows</h2>
     
     <div v-if="loading" class="loading">
@@ -14,9 +14,10 @@
       <div 
         v-for="(typeData, typeName) in characterTypeStats" 
         :key="typeName" 
-        class="type-card"
+        class="type-card" 
+        :class="[{ 'hide': typeName == 'Other' }]"
       >
-        <img :src="getImageUrl(typeName)" :alt="`Icon for ${typeName}`"/>
+        <!-- <img :src="getImageUrl(typeName)" :alt="`Icon for ${typeName}`"/> -->
         <h3>{{ typeName }}</h3>
         <div class="stats">
           <div class="stat">
@@ -41,6 +42,13 @@ const { characterTypeStats, loading, error } = useActorStats()
 const imageMap = {
   Detective: new URL('@/assets/gavel-solid.svg', import.meta.url).href,
   Judge: new URL('@/assets/gavel-solid.svg', import.meta.url).href,
+  "Nurse/Doctor": new URL('@/assets/stethoscope.svg', import.meta.url).href,
+  Paramedic: new URL('@/assets/truck-medical-solid.svg', import.meta.url).href,
+  Police: new URL('@/assets/handcuffs.svg', import.meta.url).href,
+  Student: new URL('@/assets/graduation-cap.svg', import.meta.url).href,
+  Witness: new URL('@/assets/eye-solid.svg', import.meta.url).href,
+  Perpetrator: new URL('@/assets/face-angry-solid.svg', import.meta.url).href,
+  "Lab Tech": new URL('@/assets/flask-solid.svg', import.meta.url).href,
   "Defense Attorney": new URL('@/assets/gavel-solid.svg', import.meta.url).href
 };
 
@@ -56,7 +64,7 @@ const getImageUrl = (rating) => {
 
 h2 {
   margin-bottom: 2rem;
-  color: var(--text-primary);
+  color: var(--white);
 }
 
 .type-grid {
@@ -67,7 +75,6 @@ h2 {
 
 .type-card {
     background-color: var(--white);
-    padding: 15px;
     text-align: center;
     margin: 10px;
     border: 2px solid var(--white);
@@ -76,14 +83,12 @@ h2 {
     border-radius: 7px;
     color: var(--black);
     outline: 3px solid var(--red);
-    flex-grow: 1;
-    display: flex
-;
+    display: flex;
 }
 
 h3 {
-  margin: 0 0 1rem 0;
-  color: var(--text-primary);
+  margin: 0;
+  color: var(--black);
   font-size: 1.1rem;
 }
 
@@ -102,14 +107,14 @@ h3 {
 .count {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--blue);
+  color: var(--black);
 }
 
-.label {
+/* .label {
   font-size: 0.9rem;
   color: var(--text-secondary);
   margin-top: 0.25rem;
-}
+} */
 
 .loading, .error {
   text-align: center;
@@ -127,7 +132,9 @@ h3 {
 
 .character-type-stats {
   background: var(--red);
-    border-radius: 8px;
-    margin: 20px;
+}
+
+.hide {
+  display: none;
 }
 </style>

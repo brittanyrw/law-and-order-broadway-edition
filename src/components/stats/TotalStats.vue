@@ -1,5 +1,5 @@
 <template>
-  <div class="stat-card top-stats">
+  <div class="stat-card top-stats" id="stats">
     <h2>Overall Statistics</h2>
     <div v-if="loading" class="loading">Loading statistics!</div>
     <div v-else-if="error" class="error">

@@ -1,46 +1,37 @@
 <template>
-  <div class="repeat-characters">
+  <div class="repeat-characters" id="repeat">
     <h2>Actors with Repeated Characters</h2>
-    
+
     <div v-if="loading" class="loading">
       Loading repeat character statistics!
     </div>
-    
+
     <div v-else-if="error" class="error">
       {{ error }}
     </div>
-    
+
     <div v-else class="actors-grid">
-      <div v-for="actor in repeatCharacters" 
-           :key="actor.name" 
-           class="actor-section">
-        <h3>{{ actor.name }}</h3>
-        <p>Total Repeat Appearances: {{ actor.totalRepeats }}</p>
-        
-        <table>
-          <thead>
-            <tr>
-              <th>Character</th>
-              <th>Episodes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="character in actor.characters" 
-                :key="character.name">
-              <td>{{ character.name }}</td>
-              <td>{{ character.episodes }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div
+        v-for="actor in repeatCharacters"
+        :key="actor.name"
+        class="actor-section"
+      >
+        <h3>
+          {{ actor.name }} <span>{{ actor.totalRepeats }}</span>
+        </h3>
+        <!-- <p>Total Repeat Appearances: {{ actor.totalRepeats }}</p> -->
+        <p v-for="character in actor.characters" :key="character.name" :class="[{ 'resize-name': character.name.length >= 28 }]">
+          {{ character.name }} ({{ character.episodes }})
+        </p>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { useActorStats } from '@/utils/useActorStats'
+import { useActorStats } from "@/utils/useActorStats";
 
-const { repeatCharacters, loading, error } = useActorStats()
+const { repeatCharacters, loading, error } = useActorStats();
 </script>
 
 <style scoped>
@@ -61,44 +52,25 @@ h2 {
 }
 
 .actor-section {
-  background-color: var(--background-light);
-  border-radius: 8px;
   padding: 1.5rem;
+  background-color: var(--white);
+  padding: 15px;
+  margin: 10px;
+  border: 2px solid var(--white);
+  -webkit-box-shadow: 5px 5px 0 var(--white);
+  box-shadow: 9px 9px 0 var(--black);
+  border-radius: 7px;
+  color: var(--black);
+  outline: 3px solid var(--black);
 }
 
 h3 {
   margin: 0 0 0.5rem 0;
-  color: var(--text-primary);
   font-size: 1.25rem;
 }
 
-p {
-  margin: 0 0 1rem 0;
-  color: var(--text-secondary);
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th {
-  text-align: left;
-  padding: 0.5rem;
-  color: var(--text-secondary);
-  border-bottom: 1px solid var(--border-color);
-}
-
-td {
-  padding: 0.5rem;
-  border-bottom: 1px solid var(--border-color-light);
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-.loading, .error {
+.loading,
+.error {
   text-align: center;
   padding: 2rem;
   color: var(--text-secondary);
@@ -106,5 +78,26 @@ tr:last-child td {
 
 .error {
   color: var(--error-color);
+}
+
+.actor-section:nth-child(2n) h3 {
+  color: var(--red);
+}
+
+.actor-section:nth-child(4n) h3 {
+  color: var(--blue);
+}
+
+.actor-section h3 {
+  display: flex;
+  justify-content: space-between;
+}
+
+.actor-section p {
+  margin: 0;
+}
+
+.resize-name {
+  font-size: 16px;
 }
 </style>
