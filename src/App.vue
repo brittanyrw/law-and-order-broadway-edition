@@ -106,6 +106,7 @@ header {
   margin: auto;
   padding-bottom: 0;
   padding: 30px 15px 0 20px;
+  font-family: "Libre Baskerville", serif;
 }
 
 #main {
