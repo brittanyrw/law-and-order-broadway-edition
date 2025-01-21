@@ -33,7 +33,7 @@
                   v-for="actor in episode.actors" 
                   :key="actor.name"
                 >
-                  {{ actor.name }} <span> as {{ actor.character[0] }} </span>
+                  {{ actor.name }} <span class="character"> as {{ actor.character[0] }} </span>
                 </li>
               </ul>
             </div>
@@ -85,11 +85,59 @@ h4 {
   justify-content: space-between;
 }
 
-.episode-card span {
+.character {
   font-size: 16px;
 }
 
 .multiple-actors {
   padding: 1em;
+}
+
+.episode-card {
+    background-color: var(--white);
+    padding: 15px;
+    margin: 10px;
+    border: 2px solid var(--white);
+    -webkit-box-shadow: 5px 5px 0 var(--white);
+    box-shadow: 9px 9px 0 var(--black);
+    border-radius: 7px;
+    color: var(--black);
+    outline: 3px solid var(--black);
+}
+
+.episode-card:nth-child(1n) h4 {
+  color: var(--blue);
+}
+
+.episode-card:nth-child(2n) h4 {
+  color: var(--red);
+}
+
+.episode-card:nth-child(3n) h4 {
+  color: var(--black);
+}
+
+.episode-card h4 span {
+  width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-weight: 600;
+    background: var(--black);
+}
+
+.episode-card:nth-child(1n) h4 span {
+  background: var(--blue);
+}
+
+.episode-card:nth-child(2n) h4 span {
+  background: var(--red);
+}
+
+.episode-card:nth-child(3n) h4 span {
+  background: var(--black);
 }
 </style>
