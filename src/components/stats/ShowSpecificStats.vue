@@ -1,44 +1,52 @@
 <script setup>
-import { useActorStats } from '@/utils/useActorStats'
+import { useActorStats } from "@/utils/useActorStats";
 
-const { showSpecificStats, loading, error } = useActorStats()
+const { showSpecificStats, loading, error } = useActorStats();
 </script>
 
 <template>
   <div class="show-specific-stats">
     <h2>Top Actors by Law & Order Show</h2>
-    
-    <div v-if="loading" class="loading">
-      Loading show statistics!
-    </div>
-    
+
+    <div v-if="loading" class="loading">Loading show statistics!</div>
+
     <div v-else-if="error" class="error">
       {{ error }}
     </div>
-    
+
     <div v-else class="shows-container">
-      <div v-for="(actors, showName) in showSpecificStats?.showBreakdown || {}" 
-           :key="showName" 
-           class="show-section">
-        <h3>{{ showName }}</h3>
-        <table v-if="actors && actors.length > 0">
-          <thead>
-            <tr>
-              <th class="rank-column">Rank</th>
-              <th>Actor Name</th>
-              <th class="episodes-column">Episodes</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(actor, index) in actors" 
-                :key="actor.name"
-                :class="{ 'top-three': index < 3 }">
-              <td class="rank">{{ index + 1 }}</td>
-              <td class="actor-name">{{ actor.name }}</td>
-              <td class="episodes">{{ actor.episodes }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div
+        v-for="(actors, showName) in showSpecificStats?.showBreakdown || {}"
+        :key="showName"
+        class="show-section stat-card"
+      >
+        <div class="show-header">
+          <h3>{{ showName }}</h3>
+        </div>
+        <div class="list" v-if="actors && actors.length > 0">
+          <div class="list-header">
+            <div class="actor-header">
+              <div class="rank-column">Rank</div>
+              <div class="name-column">Actor Name</div>
+              <div class="episodes-column">Episodes</div>
+            </div>
+          </div>
+          <div class="actor-info">
+            <div
+              class="actor-item"
+              v-for="(actor, index) in actors"
+              :key="actor.name"
+            >
+              <div class="rank">
+                <span class="rank-circle" :class="`rank-${index + 1}`">{{
+                  index + 1
+                }}</span>
+              </div>
+              <div class="actor-name">{{ actor.name }}</div>
+              <div class="episodes">{{ actor.episodes }}</div>
+            </div>
+          </div>
+        </div>
         <p v-else class="no-actors">No actors found for this show</p>
       </div>
     </div>
@@ -46,139 +54,104 @@ const { showSpecificStats, loading, error } = useActorStats()
 </template>
 
 <style scoped>
+
 .show-specific-stats {
-  padding: 1rem;
+  padding: 1em;
+}
+.stat-card {
+  background-color: var(--white);
+    padding: 15px;
+    margin: 10px;
+    border: 2px solid var(--white);
+    -webkit-box-shadow: 5px 5px 0 var(--white);
+    box-shadow: 9px 9px 0 var(--black);
+    border-radius: 7px;
+    color: var(--black);
+    outline: 3px solid var(--black);
+    flex-grow: 1;
 }
 
-h2 {
-  margin-bottom: 2rem;
-  color: var(--text-primary);
-  font-size: 1.5rem;
+.show-header {
+  margin-bottom: 24px;
 }
 
-.shows-container {
+.show-header h3 {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 14px;
+  margin: 0;
+}
+
+.actor-header {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 2rem;
+  grid-template-columns: 80px 1fr 100px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--gray);
+  color: var(--black);
+  /* font-size: 14px; */
 }
 
-.show-section {
-  background-color: var(--card-background);
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.actor-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 100px;
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+  align-items: center;
 }
 
-h3 {
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-  font-size: 1.2rem;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th {
-  text-align: left;
-  padding: 0.75rem 1rem;
-  border-bottom: 2px solid var(--border-color);
-  color: var(--text-secondary);
+.rank-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
   font-weight: 600;
 }
 
-td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--border-color);
+.rank-1 {
+  background-color: #8b2635;
+  color: var(--white);
+}
+.rank-2 {
+  background-color: #2b4380;
+  color: var(--white);
+}
+.rank-3 {
+  background-color: #333333;
+  color: var(--white);
 }
 
-tr:last-child td {
-  border-bottom: none;
-}
-
-.rank-column {
-  width: 80px;
-}
-
-.episodes-column {
-  width: 100px;
+.episodes {
   text-align: right;
-}
-
-.rank {
+  padding-right: 16px;
   font-weight: 600;
-  color: var(--text-secondary);
+  color: var(--black);
 }
 
 .actor-name {
   font-weight: 500;
 }
 
-.episodes {
-  text-align: right;
-  font-weight: 600;
-  color: var(--blue);
-}
-
-.top-three {
-  background-color: var(--highlight-background);
-}
-
-tr:hover {
-  background-color: var(--hover-background);
-}
-
-.top-three:hover {
-  background-color: var(--highlight-background-hover);
-}
-
-.no-actors {
+.loading,
+.error {
   text-align: center;
-  color: var(--text-secondary);
-  padding: 2rem 0;
-}
-
-.loading {
-  text-align: center;
-  padding: 3rem;
-  color: var(--text-secondary);
-  font-size: 1.1rem;
-  animation: pulse 1.5s infinite ease-in-out;
+  padding: 20px;
 }
 
 .error {
-  text-align: center;
-  padding: 3rem;
-  color: var(--error-color);
-  font-size: 1.1rem;
+  color: #ff0000;
 }
 
-@keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
-}
-
-@media (max-width: 480px) {
-  .shows-container {
-    grid-template-columns: 1fr;
-  }
-  
-  .rank-column {
-    width: 60px;
-  }
-  
-  .episodes-column {
-    width: 80px;
-  }
-  
-  td, th {
-    padding: 0.75rem 0.5rem;
-  }
-  
-  .actor-name {
-    font-size: 0.9rem;
-  }
+.shows-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1em;
 }
 </style>

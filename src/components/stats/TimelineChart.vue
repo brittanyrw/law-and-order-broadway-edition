@@ -42,12 +42,13 @@
       textStyle: {
         color: '#333'
       },
-      backgroundColor: "#000000"
+      backgroundColor: "#f8f8f8"
     },
     legend: {
       top: 25,
       textStyle: {
-        color: '#ffffff'
+        color: '#ffffff',
+        fontSize: '16'
       },
       icon: 'rect'
     },
@@ -119,7 +120,7 @@
       'Law & Order: Organized Crime': '#0F0F0F',
       'Law & Order: LA': '#FFD046'
     }
-    return colors[showName] || '#999'
+    return colors[showName] || '#000000'
   }
   </script>
   
@@ -128,7 +129,7 @@
     padding: 1rem;
     background-color: var(--black);
     border-radius: 8px;
-    margin: 1rem 0;
+    margin: 1rem;
   }
   
   .chart {
@@ -137,7 +138,7 @@
   }
   
   h2 {
-    color: white;
+    color: var(--white);
     font-size: 1.5rem;
     margin-bottom: 1rem;
   }

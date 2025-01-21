@@ -128,7 +128,7 @@ h2 {
 .top-stats {
   background-color: var(--black);
   border-radius: 0;
-  padding: 20px;
+  padding: 20px 20px 60px 20px;
 }
 
 .stats-grid {

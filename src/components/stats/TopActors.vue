@@ -1,6 +1,7 @@
 <template>
   <div class="stat-card">
     <h2>Top 10 Law & Order Actors</h2>
+    <p>Appearances across the entire Law & Order franchise.</p>
     <div v-if="loading" class="loading">
       Loading top actors!
     </div>
@@ -41,7 +42,6 @@ const { topLawAndOrderActors, loading, error } = useActorStats()
   display: flex;
   align-items: center;
   padding: 1rem;
-  border-bottom: 1px solid var(--border-color);
   transition: background-color 0.2s;
 }
 
@@ -62,6 +62,22 @@ const { topLawAndOrderActors, loading, error } = useActorStats()
   background-color: var(--blue);
 }
 
+.top-three .actor-rank {
+  color: white;
+}
+
+.actors-list .top-three:first-child .actor-rank {
+  background-color: var(--red);
+}
+
+.actors-list .top-three:nth-child(2) .actor-rank {
+  background-color: var(--blue);
+}
+
+.actors-list .top-three:nth-child(3) .actor-rank {
+  background-color: var(--black);
+}
+
 .actor-info {
   flex: 1;
   display: flex;
@@ -74,8 +90,8 @@ const { topLawAndOrderActors, loading, error } = useActorStats()
 }
 
 .actor-episodes {
-  font-weight: 600;
-  color: var(--blue);
+  font-weight: bold;
+  color: var(--black);
 }
 
 .actor-item:last-child {
@@ -95,7 +111,7 @@ const { topLawAndOrderActors, loading, error } = useActorStats()
 
 /* Hover effect */
 .actor-item:hover {
-  background-color: var(--background-light);
+  background-color: var(--gray);
   border-radius: 4px;
 }
 

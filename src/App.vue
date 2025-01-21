@@ -6,36 +6,59 @@
     </header>
     <div class="hero">
       <p>
-        In the Broadway theater community, Law & Order has long been known for casting Broadway actors over the years. This project was created to show visually how Broadway actors have been involved in the Law & Order franchise, tracing data from the very first episode in 1990 to the present.
+        In the Broadway theater community, Law & Order has long been known for
+        casting Broadway actors over the years. This project was created to show
+        visually how Broadway actors have been involved in the Law & Order
+        franchise, tracing data from the very first episode in 1990 to the
+        present.
       </p>
-      <p>This project is still a work in progress. As of Jan 2025, data has been entered for the years 1990 - 1992.</p>
+      <p>
+        This project is still a work in progress. As of Jan 2025, data has been
+        entered for the years 1990 - 1992.
+      </p>
       <p class="portfolio-link">
         Created by
         <a href="https://musicalwebdev.com" target="_blank">Brittany Walker</a>.
         View the code
-        <a href="https://github.com/brittanyrw/law-and-order-broadway-edition" target="_blank"
+        <a
+          href="https://github.com/brittanyrw/law-and-order-broadway-edition"
+          target="_blank"
           >on GitHub.</a
         >
       </p>
+      <nav>
+        <ul>
+          <li>Skip To:</li>
+          <li><a href="#stats">Overall Statistics</a></li>
+          <li><a href="#shows">Top 10 Actors</a></li>
+          <li><a href="#shows">Timeline of Appearances</a></li>
+          <li><a href="#shows">Top Actors by Show</a></li>
+          <li><a href="#shows">Repeat Characters</a></li>
+          <li><a href="#shows">Types of Characters</a></li>
+          <li><a href="#shows">Episodes with Multiple Broadway Actors</a></li>
+          <li><a href="#shows">Other Crime Shows</a></li>
+        </ul>
+      </nav>
     </div>
 
     <TotalStats />
 
     <TopActors />
 
+    <TimelineChart />
+
+    <ShowSpecificStats />
+
+    <RepeatCharacters />
+
+    <CharacterTypeStats />
+
+    <MultipleActors />
+
     <BarChart />
 
     <CrimeShowStats />
 
-    <ShowSpecificStats />
-
-    <CharacterTypeStats />
-
-    <RepeatCharacters />
-
-    <MultipleActors />
-
-    <TimelineChart />
   </div>
 </template>
 

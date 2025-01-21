@@ -7,7 +7,7 @@
       {{ error }}
     </div>
     <div v-else class="stats-content">
-      <div class="top-crime-shows stat-section">
+      <!-- <div class="top-crime-shows stat-section">
         <h2>Top 10 Other Crime Shows</h2>
         <table>
           <thead>
@@ -27,7 +27,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> -->
 
       <div class="top-crime-show-actors stat-section">
         <h2>Actors with Most Other Crime Show Appearances</h2>

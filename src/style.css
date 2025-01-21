@@ -9,6 +9,7 @@
   --white: #f8f8f8;
   --red: #992843;
   --blue: #284c99;
+  --gray: #e1e1e1;
 }
 
 /* Base styles */
@@ -33,10 +34,10 @@ body {
 /* Card styles for stats sections */
 .stat-card {
   background-color: var(--white);
-  border-radius: 8px;
+  /* border-radius: 8px; */
   padding: 1.5rem;
   margin-bottom: 2rem;
-  box-shadow: var(--card-shadow);
+  /* box-shadow: var(--card-shadow); */
 }
 
 .stat-card h2 {
