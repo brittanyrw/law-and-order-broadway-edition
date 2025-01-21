@@ -105,6 +105,7 @@ header {
   align-items: center;
   margin: auto;
   padding-bottom: 0;
+  padding: 30px 15px 0 20px;
 }
 
 #main {
@@ -118,7 +119,7 @@ header {
 
 .header-top,
 .header-bottom {
-  font-weight: 100;
+  font-weight: bold;
   margin: 0;
   text-transform: uppercase;
 }
@@ -126,7 +127,7 @@ header {
 .header-top {
   border-top: 7px solid;
   border-bottom: 7px solid;
-  font-size: 50px;
+  font-size: 45px;
   max-width: 700px;
 }
 
@@ -184,12 +185,13 @@ nav ul li:first-child {
   font-size: 16px;
 }
 
-@media screen and (min-width: 450px) {
+@media screen and (min-width: 662px) {
   .header-top {
     font-size: 80px;
   }
   header {
     margin: 50px auto 0 auto;
+    padding: 0;
   }
   .header-bottom {
     font-size: 56px;
