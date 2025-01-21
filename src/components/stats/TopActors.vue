@@ -2,21 +2,24 @@
   <div class="stat-card" id="top">
     <h2>Top 10 Law & Order Actors</h2>
     <p>Appearances across the entire Law & Order franchise.</p>
-    <div v-if="loading" class="loading">
-      Loading top actors!
-    </div>
+    <div v-if="loading" class="loading">Loading top actors!</div>
     <div v-else-if="error" class="error">
       {{ error }}
     </div>
     <div v-else class="actors-list">
-      <div v-for="(actor, index) in topLawAndOrderActors" 
-           :key="actor.name" 
-           class="actor-item"
-           :class="{ 'top-three': index < 3 }">
+      <div
+        v-for="(actor, index) in topLawAndOrderActors"
+        :key="actor.name"
+        class="actor-item"
+        :class="{ 'top-three': index < 3 }"
+      >
         <div class="actor-rank">{{ index + 1 }}</div>
         <div class="actor-info">
           <span class="actor-name">{{ actor.name }}</span>
-          <span class="actor-episodes">{{ actor.episodes }} {{ actor.episodes === 1 ? 'episode' : 'episodes' }}</span>
+          <span class="actor-episodes"
+            >{{ actor.episodes }}
+            {{ actor.episodes === 1 ? "episode" : "episodes" }}</span
+          >
         </div>
       </div>
     </div>
@@ -24,10 +27,9 @@
 </template>
 
 <script setup>
-import { useActorStats } from '@/utils/useActorStats'
+import { useActorStats } from "@/utils/useActorStats";
 
-const { topLawAndOrderActors, loading, error } = useActorStats()
-
+const { topLawAndOrderActors, loading, error } = useActorStats();
 </script>
 
 <style scoped>
@@ -41,7 +43,6 @@ const { topLawAndOrderActors, loading, error } = useActorStats()
 .actor-item {
   display: flex;
   align-items: center;
-  padding: 1rem;
   transition: background-color 0.2s;
 }
 
@@ -94,7 +95,8 @@ const { topLawAndOrderActors, loading, error } = useActorStats()
   color: var(--black);
 }
 
-.loading, .error {
+.loading,
+.error {
   text-align: center;
   padding: 2rem;
   color: var(--darkgray);
@@ -109,13 +111,19 @@ const { topLawAndOrderActors, loading, error } = useActorStats()
   border-radius: 4px;
 }
 
+@media screen and (min-width: 426px) {
+  .actor-item {
+    padding: 1rem;
+  }
+}
+
 @media (max-width: 600px) {
   .actor-info {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.25rem;
   }
-  
+
   .actor-episodes {
     font-size: 0.9em;
   }

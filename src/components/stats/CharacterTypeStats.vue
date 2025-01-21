@@ -1,21 +1,19 @@
 <template>
   <div class="character-type-stats" id="types">
     <h2>Character Types Across Law & Order Shows</h2>
-    
-    <div v-if="loading" class="loading">
-      Loading character statistics!
-    </div>
-    
+
+    <div v-if="loading" class="loading">Loading character statistics!</div>
+
     <div v-else-if="error" class="error">
       {{ error }}
     </div>
-    
+
     <div v-else class="type-grid">
-      <div 
-        v-for="(typeData, typeName) in characterTypeStats" 
-        :key="typeName" 
-        class="type-card" 
-        :class="[{ 'hide': typeName == 'Other' }]"
+      <div
+        v-for="(typeData, typeName) in characterTypeStats"
+        :key="typeName"
+        class="type-card"
+        :class="[{ hide: typeName == 'Other' }]"
       >
         <!-- <img :src="getImageUrl(typeName)" :alt="`Icon for ${typeName}`"/> -->
         <h3>{{ typeName }}</h3>
@@ -35,25 +33,25 @@
 </template>
 
 <script setup>
-import { useActorStats } from '@/utils/useActorStats'
+import { useActorStats } from "@/utils/useActorStats";
 
-const { characterTypeStats, loading, error } = useActorStats()
+const { characterTypeStats, loading, error } = useActorStats();
 
 const imageMap = {
-  Detective: new URL('@/assets/gavel-solid.svg', import.meta.url).href,
-  Judge: new URL('@/assets/gavel-solid.svg', import.meta.url).href,
-  "Nurse/Doctor": new URL('@/assets/stethoscope.svg', import.meta.url).href,
-  Paramedic: new URL('@/assets/truck-medical-solid.svg', import.meta.url).href,
-  Police: new URL('@/assets/handcuffs.svg', import.meta.url).href,
-  Student: new URL('@/assets/graduation-cap.svg', import.meta.url).href,
-  Witness: new URL('@/assets/eye-solid.svg', import.meta.url).href,
-  Perpetrator: new URL('@/assets/face-angry-solid.svg', import.meta.url).href,
-  "Lab Tech": new URL('@/assets/flask-solid.svg', import.meta.url).href,
-  "Defense Attorney": new URL('@/assets/gavel-solid.svg', import.meta.url).href
+  Detective: new URL("@/assets/gavel-solid.svg", import.meta.url).href,
+  Judge: new URL("@/assets/gavel-solid.svg", import.meta.url).href,
+  "Nurse/Doctor": new URL("@/assets/stethoscope.svg", import.meta.url).href,
+  Paramedic: new URL("@/assets/truck-medical-solid.svg", import.meta.url).href,
+  Police: new URL("@/assets/handcuffs.svg", import.meta.url).href,
+  Student: new URL("@/assets/graduation-cap.svg", import.meta.url).href,
+  Witness: new URL("@/assets/eye-solid.svg", import.meta.url).href,
+  Perpetrator: new URL("@/assets/face-angry-solid.svg", import.meta.url).href,
+  "Lab Tech": new URL("@/assets/flask-solid.svg", import.meta.url).href,
+  "Defense Attorney": new URL("@/assets/gavel-solid.svg", import.meta.url).href,
 };
 
 const getImageUrl = (rating) => {
-  return imageMap[rating] || '';
+  return imageMap[rating] || "";
 };
 </script>
 
@@ -75,21 +73,21 @@ h2 {
 
 .type-card {
   background-color: var(--white);
-    padding: 12px;
-    border: 2px solid var(--white);
-    box-shadow: 5px 5px 0 var(--white);
-    border-radius: 7px;
-    color: var(--black);
-    outline: 3px solid var(--red);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  padding: 2px;
+  border: 2px solid var(--white);
+  box-shadow: 5px 5px 0 var(--white);
+  border-radius: 7px;
+  color: var(--black);
+  outline: 3px solid var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 h3 {
   margin: 0 10px 0 0;
   color: var(--black);
-  font-size: 1.3rem;
+  font-size: 16px;
 }
 
 .stats {
@@ -105,18 +103,19 @@ h3 {
 }
 
 .count {
-  width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    background: var(--black);
-    color: var(--white);
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  background: var(--black);
+  color: var(--white);
 }
 
-.loading, .error {
+.loading,
+.error {
   text-align: center;
   padding: 2rem;
   color: var(--darkgray);
@@ -142,11 +141,26 @@ h3 {
   background: var(--black);
 }
 
-.type-card:nth-child(3n+1) .stat .count {
+.type-card:nth-child(3n + 1) .stat .count {
   background: var(--blue);
 }
 
-.type-card:nth-child(3n+2) .stat .count {
+.type-card:nth-child(3n + 2) .stat .count {
   background: var(--red);
+}
+
+@media screen and (min-width: 426px) {
+  .type-card {
+    padding: 12px;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+  .count {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+  }
 }
 </style>

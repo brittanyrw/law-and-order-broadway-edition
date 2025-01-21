@@ -1,8 +1,6 @@
 <template>
   <div class="crime-show-stats">
-    <div v-if="loading" class="loading">
-      Loading crime show statistics...
-    </div>
+    <div v-if="loading" class="loading">Loading crime show statistics...</div>
     <div v-else-if="error" class="error">
       {{ error }}
     </div>
@@ -32,8 +30,8 @@
       <div class="top-crime-show-actors">
         <h2>Actors Other Crime Show Appearances</h2>
         <div class="actors-list">
-          <div 
-            v-for="(actor, index) in topCrimeShowActors" 
+          <div
+            v-for="(actor, index) in topCrimeShowActors"
             :key="actor.name"
             class="actor-item"
             :class="{ 'top-three': index < 3 }"
@@ -41,21 +39,22 @@
             <div class="actor-rank">{{ index + 1 }}</div>
             <div class="actor-info">
               <span class="actor-name">{{ actor.name }}</span>
-              <span class="actor-shows">{{ actor.shows }} {{ actor.shows === 1 ? 'show' : 'shows' }}</span>
+              <span class="actor-shows"
+                >{{ actor.shows }}
+                {{ actor.shows === 1 ? "show" : "shows" }}</span
+              >
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-
-  
 </template>
 
 <script setup>
-import { useActorStats } from '@/utils/useActorStats'
+import { useActorStats } from "@/utils/useActorStats";
 
-const { topCrimeShows, topCrimeShowActors, loading, error } = useActorStats()
+const { topCrimeShows, topCrimeShowActors, loading, error } = useActorStats();
 </script>
 
 <style scoped>
@@ -73,7 +72,6 @@ const { topCrimeShows, topCrimeShowActors, loading, error } = useActorStats()
 .actor-item {
   display: flex;
   align-items: center;
-  padding: 1rem;
   transition: background-color 0.2s;
 }
 
@@ -121,7 +119,8 @@ const { topCrimeShows, topCrimeShowActors, loading, error } = useActorStats()
   color: var(--black);
 }
 
-.loading, .error {
+.loading,
+.error {
   text-align: center;
   padding: 2rem;
   color: var(--darkgray);
@@ -142,7 +141,7 @@ const { topCrimeShows, topCrimeShowActors, loading, error } = useActorStats()
     align-items: flex-start;
     gap: 0.25rem;
   }
-  
+
   .actor-shows {
     font-size: 0.9em;
   }
@@ -152,5 +151,11 @@ h2 {
   margin-bottom: 1rem;
   color: var(--black);
   font-size: 1.3rem;
+}
+
+@media screen and (min-width: 426px) {
+  .actor-item {
+    padding: 1rem;
+  }
 }
 </style>

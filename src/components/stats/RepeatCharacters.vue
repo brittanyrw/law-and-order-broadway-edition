@@ -20,7 +20,11 @@
           {{ actor.name }} <span>{{ actor.totalRepeats }}</span>
         </h3>
         <!-- <p>Total Repeat Appearances: {{ actor.totalRepeats }}</p> -->
-        <p v-for="character in actor.characters" :key="character.name" :class="[{ 'resize-name': character.name.length >= 28 }]">
+        <p
+          v-for="character in actor.characters"
+          :key="character.name"
+          :class="[{ 'resize-name': character.name.length >= 28 }]"
+        >
           {{ character.name }} ({{ character.episodes }})
         </p>
       </div>

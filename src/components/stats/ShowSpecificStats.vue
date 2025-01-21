@@ -54,25 +54,20 @@ const { showSpecificStats, loading, error } = useActorStats();
 </template>
 
 <style scoped>
-
 .show-specific-stats {
   padding: 1em;
 }
 .stat-card {
   background-color: var(--white);
-    padding: 15px;
-    margin: 10px;
-    border: 2px solid var(--white);
-    -webkit-box-shadow: 5px 5px 0 var(--white);
-    box-shadow: 9px 9px 0 var(--black);
-    border-radius: 7px;
-    color: var(--black);
-    outline: 3px solid var(--black);
-    flex-grow: 1;
-}
-
-.show-header {
-  margin-bottom: 24px;
+  padding: 15px;
+  margin: 10px;
+  border: 2px solid var(--white);
+  -webkit-box-shadow: 5px 5px 0 var(--white);
+  box-shadow: 9px 9px 0 var(--black);
+  border-radius: 7px;
+  color: var(--black);
+  outline: 3px solid var(--black);
+  flex-grow: 1;
 }
 
 .show-header h3 {
@@ -89,16 +84,17 @@ const { showSpecificStats, loading, error } = useActorStats();
 
 .actor-header {
   display: grid;
-  grid-template-columns: 80px 1fr 100px;
+  grid-template-columns: 43px 1fr 77px;
   padding: 12px 0;
   color: var(--black);
+  font-size: 16px;
 }
 
 .actor-item {
   display: grid;
-  grid-template-columns: 80px 1fr 100px;
-  padding: 16px 0;
   align-items: center;
+  grid-template-columns: 41px 1fr 47px;
+  padding-top: 5px;
 }
 
 .rank-circle {
@@ -134,6 +130,7 @@ const { showSpecificStats, loading, error } = useActorStats();
 
 .actor-name {
   font-weight: 500;
+  font-size: 16px;
 }
 
 .loading,
@@ -148,7 +145,24 @@ const { showSpecificStats, loading, error } = useActorStats();
 
 .shows-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
   grid-gap: 1em;
+}
+
+@media screen and (min-width: 426px) {
+  .shows-container {
+    grid-template-columns: 1fr 1fr;
+  }
+  .actor-item {
+    padding: 16px 0;
+    grid-template-columns: 80px 1fr 100px;
+  }
+  .actor-header {
+    grid-template-columns: 80px 1fr 100px;
+    font-size: 21px;
+  }
+
+  .show-header {
+    margin-bottom: 24px;
+  }
 }
 </style>

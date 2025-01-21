@@ -1,114 +1,111 @@
 <template>
   <div class="chart-container" id="other-crime">
     <h2>Top 10 Other Crime Shows</h2>
-    <div v-if="loading" class="loading">
-      Loading chart data!
-    </div>
+    <div v-if="loading" class="loading">Loading chart data!</div>
     <div v-else-if="error" class="error">
       {{ error }}
     </div>
-    <v-chart 
-      v-else
-      class="chart" 
-      :option="chartOption" 
-      autoresize 
-    />
+    <div class="chart-scroll-container" v-else>
+      <v-chart class="chart" :option="chartOption" autoresize />
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed } from 'vue'
-import { use } from 'echarts/core'
-import { CanvasRenderer } from 'echarts/renderers'
-import { BarChart } from 'echarts/charts'
+import { computed } from "vue";
+import { use } from "echarts/core";
+import { CanvasRenderer } from "echarts/renderers";
+import { BarChart } from "echarts/charts";
 import {
   GridComponent,
   TooltipComponent,
-  TitleComponent
-} from 'echarts/components'
-import VChart from 'vue-echarts'
-import { useActorStats } from '@/utils/useActorStats'
+  TitleComponent,
+} from "echarts/components";
+import VChart from "vue-echarts";
+import { useActorStats } from "@/utils/useActorStats";
 
 use([
   CanvasRenderer,
   BarChart,
   GridComponent,
   TooltipComponent,
-  TitleComponent
-])
+  TitleComponent,
+]);
 
-const { topCrimeShows, loading, error } = useActorStats()
+const { topCrimeShows, loading, error } = useActorStats();
 
 const chartOption = computed(() => ({
   tooltip: {
-    trigger: 'axis',
+    trigger: "axis",
     axisPointer: {
-      type: 'shadow'
+      type: "shadow",
     },
     formatter: (params) => {
       const data = params[0];
       return `${data.name}<br/>Broadway Actors: ${data.value}`;
-    }
+    },
   },
   grid: {
     top: 20,
     right: 50,
     bottom: 20,
     left: 200,
-    containLabel: true
+    containLabel: true,
   },
   xAxis: {
-    type: 'value',
+    type: "value",
     splitLine: {
-      show: false
+      show: false,
     },
     axisLabel: {
-      color: '#ffffff'
-    }
+      color: "#ffffff",
+    },
   },
   yAxis: {
-    type: 'category',
-    data: topCrimeShows.value.map(show => show.show).reverse(),
+    type: "category",
+    data: topCrimeShows.value.map((show) => show.show).reverse(),
     axisLabel: {
-      color: '#ffffff',
+      color: "#ffffff",
       fontSize: 14,
       formatter: (value) => {
-        return value.length > 25 ? value.slice(0, 22) + '...' : value;
-      }
+        return value.length > 25 ? value.slice(0, 22) + "..." : value;
+      },
     },
     axisLine: {
-      show: false
+      show: false,
     },
     axisTick: {
-      show: false
-    }
+      show: false,
+    },
   },
   series: [
     {
-      type: 'bar',
-      data: topCrimeShows.value.map(show => ({
-        value: show.count,
-        itemStyle: {
-          color: 'rgba(255, 255, 255, 0.2)'
-        }
-      })).reverse(),
-      barWidth: '60%',
+      type: "bar",
+      data: topCrimeShows.value
+        .map((show) => ({
+          value: show.count,
+          itemStyle: {
+            color: "rgba(255, 255, 255, 0.2)",
+          },
+        }))
+        .reverse(),
+      barWidth: "60%",
       label: {
         show: true,
-        position: 'right',
-        color: '#ffffff',
+        position: "right",
+        color: "#ffffff",
         fontSize: 24,
-        fontWeight: 'bold',
-        formatter: '{c}'  
+        fontWeight: "bold",
+        formatter: "{c}",
       },
       emphasis: {
         itemStyle: {
-          color: 'rgba(255, 255, 255, 0.3)'
-        }
-      }
-    }
-  ]
-}))
+          color: "rgba(255, 255, 255, 0.3)",
+        },
+      },
+    },
+  ],
+}));
 </script>
 
 <style scoped>
@@ -122,9 +119,15 @@ const chartOption = computed(() => ({
   flex-direction: column;
 }
 
+.chart-scroll-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 .chart {
   height: 500px;
   width: 100%;
+  min-width: 800px;
 }
 
 h2 {
@@ -133,7 +136,8 @@ h2 {
   margin-bottom: 1rem;
 }
 
-.loading, .error {
+.loading,
+.error {
   display: flex;
   align-items: center;
   justify-content: center;

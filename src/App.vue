@@ -22,11 +22,12 @@
         franchise, tracing data from the very first episode in 1990 to the
         present.
       </p>
-      <p>
-        The data is limited to the actors of opening night casts for each
+      <p class="note">
+        Note: The data is limited to the actors of opening night casts for each
         Broadway show that has opened since September 13, 1990 (first episode
         aired of Law & Order). This project is still a work in progress. As of
-        Jan 2025, data has been entered for the years 1990 - 1992.
+        Jan 2025, data has been entered for Broadway shows that opened the years
+        1990 - 1992.
       </p>
       <p class="portfolio-link">
         Created by
@@ -179,6 +180,10 @@ nav ul li:first-child {
   width: 100%;
 }
 
+.note {
+  font-size: 16px;
+}
+
 @media screen and (min-width: 450px) {
   .header-top {
     font-size: 80px;
@@ -198,7 +203,7 @@ nav ul li:first-child {
   .quote p {
     font-size: 25px;
   }
-  nav a { 
+  nav a {
     font-size: 21px;
   }
 }

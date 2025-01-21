@@ -1,5 +1,4 @@
 :root {
-  /* Color palette */
   --black: #333333;
   --white: #f8f8f8;
   --red: #992843;
@@ -12,7 +11,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Base styles */
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   line-height: 1.6;
@@ -20,14 +18,19 @@ body {
   background-color: var(--white);
   margin: 0;
   padding: 0;
-  font-size: 21px;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 426px) {
+  body {
+    font-size: 21px;
+  }
 }
 
 #app {
   padding: 0 1em 1em 1em;
 }
 
-/* Header styles */
 .header, header {
   padding: 2rem 0;
   margin-bottom: 2rem;
@@ -48,7 +51,6 @@ body {
   font-size: 1.5rem;
 }
 
-/* List styles */
 .stat-list {
   list-style: none;
   padding: 0;
@@ -58,22 +60,17 @@ body {
   padding: 0.75rem 0;
 }
 
-/* Grid layout for stats that need to be side by side */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
 }
 
-/* Number display */
 .stat-number {
-  /* font-size: 2rem; */
   font-weight: bold;
   color: var(--black);
-  /* margin: 0.5rem 0; */
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .container {
     padding: 1rem;

@@ -1,7 +1,9 @@
 <template>
   <div class="stat-card top-stats" id="stats">
     <h2>Overall Statistics</h2>
-    <p class="subheader">These stats are across the entire Law & Order franchise.</p>
+    <p class="subheader">
+      These stats are across the entire Law & Order franchise.
+    </p>
     <div v-if="loading" class="loading">Loading statistics!</div>
     <div v-else-if="error" class="error">
       {{ error }}
@@ -45,7 +47,10 @@
             {{ longestRunningCharacter.episodes || 0 }}
           </div>
           <div v-if="longestRunningCharacter">
-            <p class="stat-subtitle">{{ longestRunningCharacter.character }} played by {{ longestRunningCharacter.actor }}</p>
+            <p class="stat-subtitle">
+              {{ longestRunningCharacter.character }} played by
+              {{ longestRunningCharacter.actor }}
+            </p>
           </div>
         </div>
       </div>
