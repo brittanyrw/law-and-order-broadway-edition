@@ -149,9 +149,6 @@ const { showSpecificStats, loading, error } = useActorStats();
 }
 
 @media screen and (min-width: 426px) {
-  .shows-container {
-    grid-template-columns: 1fr 1fr;
-  }
   .actor-item {
     padding: 16px 0;
     grid-template-columns: 80px 1fr 100px;
@@ -163,6 +160,12 @@ const { showSpecificStats, loading, error } = useActorStats();
 
   .show-header {
     margin-bottom: 24px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .shows-container {
+    grid-template-columns: 1fr 1fr;
   }
 }
 </style>
