@@ -91,16 +91,13 @@ const { showSpecificStats, loading, error } = useActorStats();
   display: grid;
   grid-template-columns: 80px 1fr 100px;
   padding: 12px 0;
-  border-bottom: 1px solid var(--gray);
   color: var(--black);
-  /* font-size: 14px; */
 }
 
 .actor-item {
   display: grid;
   grid-template-columns: 80px 1fr 100px;
   padding: 16px 0;
-  border-bottom: 1px solid #eee;
   align-items: center;
 }
 

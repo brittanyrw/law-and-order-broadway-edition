@@ -29,29 +29,27 @@
         </table>
       </div> -->
 
-      <div class="top-crime-show-actors stat-section">
-        <h2>Actors with Most Other Crime Show Appearances</h2>
-        <table>
-          <thead>
-            <tr>
-              <th class="rank-column">Rank</th>
-              <th>Actor Name</th>
-              <th class="number-column">Shows</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="(actor, index) in topCrimeShowActors" 
-                :key="actor.name"
-                :class="{ 'top-three': index < 3 }">
-              <td class="rank">{{ index + 1 }}</td>
-              <td class="actor-name">{{ actor.name }}</td>
-              <td class="count">{{ actor.shows }}</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="top-crime-show-actors">
+        <h2>Actors Other Crime Show Appearances</h2>
+        <div class="actors-list">
+          <div 
+            v-for="(actor, index) in topCrimeShowActors" 
+            :key="actor.name"
+            class="actor-item"
+            :class="{ 'top-three': index < 3 }"
+          >
+            <div class="actor-rank">{{ index + 1 }}</div>
+            <div class="actor-info">
+              <span class="actor-name">{{ actor.name }}</span>
+              <span class="actor-shows">{{ actor.shows }} {{ actor.shows === 1 ? 'show' : 'shows' }}</span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
+
+  
 </template>
 
 <script setup>
@@ -62,114 +60,97 @@ const { topCrimeShows, topCrimeShowActors, loading, error } = useActorStats()
 
 <style scoped>
 .crime-show-stats {
+  padding: 1rem;
+}
+
+.actors-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 0.75rem;
+  padding: 0.5rem;
+}
+
+.actor-item {
+  display: flex;
+  align-items: center;
   padding: 1rem;
+  transition: background-color 0.2s;
+}
+
+.actor-rank {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  margin-right: 1rem;
+  border-radius: 50%;
+  background-color: var(--white);
+}
+
+.top-three .actor-rank {
+  color: var(--white);
+}
+
+.actors-list .top-three:first-child .actor-rank {
+  background-color: var(--red);
+}
+
+.actors-list .top-three:nth-child(2) .actor-rank {
+  background-color: var(--blue);
+}
+
+.actors-list .top-three:nth-child(3) .actor-rank {
+  background-color: var(--black);
+}
+
+.actor-info {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.actor-name {
+  font-weight: 500;
+}
+
+.actor-shows {
+  font-weight: bold;
+  color: var(--black);
 }
 
 .loading, .error {
   text-align: center;
   padding: 2rem;
-  font-size: 1.1rem;
-  color: var(--text-secondary);
+  color: var(--darkgray);
 }
 
 .error {
   color: var(--error-color);
 }
 
-.stats-content {
-  display: flex;
-  gap: 2rem;
+.actor-item:hover {
+  background-color: var(--gray);
+  border-radius: 4px;
 }
 
-@media (max-width: 1200px) {
-  .stats-content {
+@media (max-width: 600px) {
+  .actor-info {
     flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .actor-shows {
+    font-size: 0.9em;
   }
 }
 
-.stat-section {
-  flex: 1;
-  background-color: var(--card-background);
-  border-radius: 8px;
-  padding: 1.5rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 h2 {
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
+  margin-bottom: 1rem;
+  color: var(--black);
   font-size: 1.3rem;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th {
-  text-align: left;
-  padding: 0.75rem 1rem;
-  border-bottom: 2px solid var(--border-color);
-  color: var(--text-secondary);
-  font-weight: 600;
-}
-
-td {
-  padding: 1rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-.rank-column {
-  width: 80px;
-}
-
-.number-column {
-  width: 120px;
-  text-align: right;
-}
-
-.rank {
-  font-weight: 600;
-  color: var(--text-secondary);
-}
-
-.count {
-  text-align: right;
-  font-weight: 600;
-  color: var(--blue);
-}
-
-.top-three {
-  background-color: var(--highlight-background);
-}
-
-tr:hover {
-  background-color: var(--hover-background);
-}
-
-.top-three:hover {
-  background-color: var(--highlight-background-hover);
-}
-
-.show-name, .actor-name {
-  font-weight: 500;
-}
-
-/* Animation for loading state */
-@keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
-}
-
-.loading {
-  animation: pulse 1.5s infinite ease-in-out;
 }
 </style>

@@ -54,16 +54,16 @@ const { topLawAndOrderActors, loading, error } = useActorStats()
   font-weight: 600;
   margin-right: 1rem;
   border-radius: 50%;
-  background-color: var(--background-light);
+  background-color: var(--white);
 }
 
 .top-three .actor-rank {
-  color: white;
+  color: var(--white);
   background-color: var(--blue);
 }
 
 .top-three .actor-rank {
-  color: white;
+  color: var(--white);
 }
 
 .actors-list .top-three:first-child .actor-rank {
@@ -94,28 +94,21 @@ const { topLawAndOrderActors, loading, error } = useActorStats()
   color: var(--black);
 }
 
-.actor-item:last-child {
-  border-bottom: none;
-}
-
-/* Loading and error states */
 .loading, .error {
   text-align: center;
   padding: 2rem;
-  color: var(--text-secondary);
+  color: var(--darkgray);
 }
 
 .error {
   color: var(--error-color);
 }
 
-/* Hover effect */
 .actor-item:hover {
   background-color: var(--gray);
   border-radius: 4px;
 }
 
-/* Responsive design */
 @media (max-width: 600px) {
   .actor-info {
     flex-direction: column;

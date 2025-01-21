@@ -41,7 +41,7 @@ const { repeatCharacters, loading, error } = useActorStats();
 
 h2 {
   margin-bottom: 2rem;
-  color: var(--text-primary);
+  color: var(--black);
   font-size: 1.75rem;
 }
 
@@ -73,7 +73,7 @@ h3 {
 .error {
   text-align: center;
   padding: 2rem;
-  color: var(--text-secondary);
+  color: var(--darkgray);
 }
 
 .error {

@@ -1,6 +1,7 @@
 <template>
   <div class="stat-card top-stats" id="stats">
     <h2>Overall Statistics</h2>
+    <p class="subheader">These stats are across the entire Law & Order franchise.</p>
     <div v-if="loading" class="loading">Loading statistics!</div>
     <div v-else-if="error" class="error">
       {{ error }}
@@ -15,7 +16,7 @@
         <div class="stat-number">{{ totalActors }}</div>
       </div>
       <div class="stat-item">
-        <p>Law & Order Episodes</p>
+        <p>Law & Order Episodes with Broadway Actors</p>
         <div class="stat-number">{{ totalEpisodes }}</div>
       </div>
       <div class="stat-item">
@@ -106,7 +107,7 @@ const {
 .stat-subtitle {
   margin: 5px 0 0 0;
   font-size: 14px;
-  color: var(--gray);
+  color: var(--black);
 }
 
 .stat-item p {
@@ -136,5 +137,9 @@ h2 {
   flex-wrap: wrap;
   gap: 15px;
   justify-content: center;
+}
+
+.subheader {
+  color: var(--white);
 }
 </style>

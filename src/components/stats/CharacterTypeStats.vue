@@ -59,7 +59,7 @@ const getImageUrl = (rating) => {
 
 <style scoped>
 .character-type-stats {
-  padding: 1rem;
+  padding: 1rem 1rem 4rem 1rem;
 }
 
 h2 {
@@ -74,22 +74,22 @@ h2 {
 }
 
 .type-card {
-    background-color: var(--white);
-    text-align: center;
-    margin: 10px;
+  background-color: var(--white);
+    padding: 12px;
     border: 2px solid var(--white);
-    -webkit-box-shadow: 5px 5px 0 var(--purple);
-    box-shadow: 9px 9px 0 var(--white);
+    box-shadow: 5px 5px 0 var(--white);
     border-radius: 7px;
     color: var(--black);
     outline: 3px solid var(--red);
     display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 h3 {
-  margin: 0;
+  margin: 0 10px 0 0;
   color: var(--black);
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 .stats {
@@ -105,21 +105,21 @@ h3 {
 }
 
 .count {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: var(--black);
+  width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    background: var(--black);
+    color: var(--white);
 }
-
-/* .label {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-top: 0.25rem;
-} */
 
 .loading, .error {
   text-align: center;
   padding: 2rem;
-  color: var(--text-secondary);
+  color: var(--darkgray);
 }
 
 .error {
@@ -136,5 +136,17 @@ h3 {
 
 .hide {
   display: none;
+}
+
+.type-card:nth-child(3n) .stat .count {
+  background: var(--black);
+}
+
+.type-card:nth-child(3n+1) .stat .count {
+  background: var(--blue);
+}
+
+.type-card:nth-child(3n+2) .stat .count {
+  background: var(--red);
 }
 </style>

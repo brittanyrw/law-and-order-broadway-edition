@@ -128,7 +128,7 @@ const chartOption = computed(() => ({
 }
 
 h2 {
-  color: white;
+  color: var(--white);
   font-size: 1.5rem;
   margin-bottom: 1rem;
 }
@@ -138,7 +138,7 @@ h2 {
   align-items: center;
   justify-content: center;
   height: 400px;
-  color: white;
+  color: var(--white);
   font-size: 1.2rem;
 }
 

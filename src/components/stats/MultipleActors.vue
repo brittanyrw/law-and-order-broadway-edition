@@ -23,11 +23,17 @@
             :key="`${episode.show}-${episode.title}`" 
             class="episode-card"
           >
-            <h4>{{ episode.title }} <span>{{ episode.actors.length }}</span></h4>
+            <h4>
+              {{ episode.title }} <span>{{ episode.actors.length }}</span>
+            </h4>
             <div class="episode-details">
               <p>S. {{ episode.seasonNumber }} | Ep. {{ episode.episodeNumber }} ({{ episode.airDate }})</p>
             </div>
-            <div class="actors-list">
+            <p @click="toggleActors(episode)" :class="{ 'clickable': true }" >View Actors ↓</p>
+            <div 
+              class="actors-list" 
+              :class="{ 'hidden': !expandedEpisodes[`${episode.show}-${episode.title}`] }"
+            >
               <ul>
                 <li 
                   v-for="actor in episode.actors" 
@@ -49,9 +55,15 @@
 
 <script setup>
 import { useActorStats } from '@/utils/useActorStats'
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 const { multipleActorEpisodes, loading, error } = useActorStats()
+const expandedEpisodes = ref({})
+
+const toggleActors = (episode) => {
+  const key = `${episode.show}-${episode.title}`
+  expandedEpisodes.value[key] = !expandedEpisodes.value[key]
+}
 
 const groupedEpisodes = computed(() => {
   const grouped = {}
@@ -73,7 +85,9 @@ const groupedEpisodes = computed(() => {
 
 .episodes-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+  align-items: start; 
 }
 
 p, h4 {
@@ -94,7 +108,8 @@ h4 {
 }
 
 .episode-card {
-    background-color: var(--white);
+  height: fit-content;
+  background-color: var(--white);
     padding: 15px;
     margin: 10px;
     border: 2px solid var(--white);
@@ -139,5 +154,17 @@ h4 {
 
 .episode-card:nth-child(3n) h4 span {
   background: var(--black);
+}
+
+.actors-list.hidden {
+  display: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  opacity: 0.8;
 }
 </style>

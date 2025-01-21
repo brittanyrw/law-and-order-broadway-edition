@@ -17,13 +17,17 @@
       <hr />
       <p>
         In the Broadway theater community, Law & Order has long been known for
-        casting many Broadway actors over the years. This project was created to show
-        visually how Broadway actors have been involved in the Law & Order
+        casting many Broadway actors over the years. This project was created to
+        show visually how Broadway actors have been involved in the Law & Order
         franchise, tracing data from the very first episode in 1990 to the
-        present. 
+        present.
       </p>
-      <p>The data is limited to the actors of opening night casts for each Broadway show that has opened since September 13, 1990 (first episode aired of Law & Order). This project is still a work in progress. As of Jan 2025, data
-        has been entered for the years 1990 - 1992.</p>
+      <p>
+        The data is limited to the actors of opening night casts for each
+        Broadway show that has opened since September 13, 1990 (first episode
+        aired of Law & Order). This project is still a work in progress. As of
+        Jan 2025, data has been entered for the years 1990 - 1992.
+      </p>
       <p class="portfolio-link">
         Created by
         <a href="https://musicalwebdev.com" target="_blank">Brittany Walker</a>.
@@ -37,13 +41,13 @@
       <nav>
         <ul>
           <li>Skip To:</li>
-          <li><a href="#stats">Overall Statistics</a></li>
+          <li><a href="#stats">Overall Stats</a></li>
           <li><a href="#top">Top 10 Actors</a></li>
-          <li><a href="#timeline">Timeline of Appearances</a></li>
+          <li><a href="#timeline">Timeline</a></li>
           <li><a href="#top-by-show">Top Actors by Show</a></li>
           <li><a href="#repeat">Repeat Characters</a></li>
-          <li><a href="#types">Types of Characters</a></li>
-          <li><a href="#multi">Episodes with Multiple Broadway Actors</a></li>
+          <li><a href="#types">Character Types</a></li>
+          <li><a href="#multi">Episodes with Multiple Actors</a></li>
           <li><a href="#other-crime">Other Crime Shows</a></li>
         </ul>
       </nav>
@@ -98,7 +102,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 50px auto 0 auto;
+  margin: auto;
   padding-bottom: 0;
 }
 
@@ -121,12 +125,12 @@ header {
 .header-top {
   border-top: 7px solid;
   border-bottom: 7px solid;
-  font-size: 80px;
+  font-size: 50px;
   max-width: 700px;
 }
 
 .header-bottom {
-  font-size: 56px;
+  font-size: 30px;
 }
 
 .hero {
@@ -142,14 +146,11 @@ header {
 }
 
 .quote img {
-  height: 60px;
-  display: inline-block;
-  margin-right: 20px;
+  display: none;
 }
 
 .quote p {
   font-style: italic;
-  font-size: 25px;
 }
 
 hr {
@@ -164,6 +165,7 @@ nav a {
   border: 3px solid var(--black);
   margin: 10px;
   display: inline-block;
+  font-size: 16px;
 }
 
 nav ul {
@@ -175,5 +177,29 @@ nav ul {
 
 nav ul li:first-child {
   width: 100%;
+}
+
+@media screen and (min-width: 450px) {
+  .header-top {
+    font-size: 80px;
+  }
+  header {
+    margin: 50px auto 0 auto;
+  }
+  .header-bottom {
+    font-size: 56px;
+  }
+
+  .quote img {
+    height: 60px;
+    display: block;
+    margin-right: 20px;
+  }
+  .quote p {
+    font-size: 25px;
+  }
+  nav a { 
+    font-size: 21px;
+  }
 }
 </style>
