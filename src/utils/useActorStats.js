@@ -4,6 +4,11 @@ import api from '../services/api'
 export function useActorStats() {
   const totalActors = ref(0)
   const totalEpisodes = ref(0)
+  const totalCharacters = ref(0)
+  const peakSeason = ref(null)
+  const multipleActorEpisodesCount = ref(0)
+  const longestRunningCharacter = ref(null)
+  const averageEpisodesPerActor = ref(0)
   const topLawAndOrderActors = ref([])
   const topCrimeShows = ref([])
   const topCrimeShowActors = ref([])
@@ -54,11 +59,22 @@ export function useActorStats() {
 
   async function loadStats() {
     try {
-      loading.value = true
-      error.value = null
+      loading.value = true;
+      error.value = null;
 
-      const [stats, actors, crimeShows, crimeShowActors, showStats, multipleActors, characterTypes, repeatChars] = await Promise.all([
-        api.getTotalStats(),
+      const stats = await api.getTotalStats();
+      // console.log('Received stats:', stats); 
+
+      totalBroadwayActors.value = stats.totalBroadwayActors;
+      totalActors.value = stats.totalActors;
+      totalCharacters.value = stats.totalCharacters;
+      peakSeason.value = stats.peakSeason;
+      multipleActorEpisodesCount.value = stats.multipleActorEpisodes;
+      longestRunningCharacter.value = stats.longestRunningCharacter;
+      averageEpisodesPerActor.value = stats.averageEpisodesPerActor;
+      totalEpisodes.value = stats.totalEpisodes;
+
+      const [actors, crimeShows, crimeShowActors, showStats, multipleActors, characterTypes, repeatChars] = await Promise.all([
         api.getTopActors(),
         api.getTopCrimeShows(),
         api.getTopCrimeShowActors(),
@@ -66,12 +82,8 @@ export function useActorStats() {
         api.getMultipleActorEpisodes(),
         api.getCharacterTypeStats(),
         api.getRepeatCharacters()
-
       ]);
 
-      totalBroadwayActors.value = stats.totalBroadwayActors
-      totalActors.value = stats.totalActors;
-      totalEpisodes.value = stats.totalEpisodes;
       multipleActorEpisodes.value = multipleActors;
       characterTypeStats.value = characterTypes;
       repeatCharacters.value = repeatChars;
@@ -79,22 +91,23 @@ export function useActorStats() {
       topLawAndOrderActors.value = actors.map(actor => ({
         name: actor.name,
         episodes: actor.episodes  
-    }));
+      }));
 
       topCrimeShows.value = crimeShows;
       topCrimeShowActors.value = crimeShowActors.map(actor => ({
         name: actor.name,
         shows: actor.showCount
-    }));
-    if (showStats && (showStats.showBreakdown || showStats.yearlyStats)) {
-      showSpecificStats.value = showStats;
-    }      
+      }));
+
+      if (showStats && (showStats.showBreakdown || showStats.yearlyStats)) {
+        showSpecificStats.value = showStats;
+      }      
 
     } catch (err) {
-      console.error('Error loading stats:', err)
-      error.value = 'Failed to load statistics'
+      console.error('Error loading stats:', err);
+      error.value = 'Failed to load statistics';
     } finally {
-      loading.value = false
+      loading.value = false;
     }
   }
 
@@ -104,7 +117,12 @@ export function useActorStats() {
 
   return {
     totalActors,
+    totalCharacters,
     totalEpisodes,
+    peakSeason,
+    multipleActorEpisodesCount,
+    longestRunningCharacter,
+    averageEpisodesPerActor,
     topLawAndOrderActors,
     topCrimeShows,
     topCrimeShowActors,
